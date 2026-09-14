@@ -1,0 +1,12 @@
+# Dependencies and builds
+js_codebase/node_modules/
+js_codebase/dist/
+js_codebase/dist.zip
+
+# Secrets and local tooling
+**/.env
+.sf/
+
+# OS
+.DS_Store
+Thumbs.db

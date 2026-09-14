@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.footer-link {
+  @apply text-gray-600 hover:text-green-800 transition;
+}
+
+.btn-primary {
+  @apply inline-flex w-full items-center justify-center bg-green-700 hover:bg-green-800 text-white font-semibold text-lg px-8 py-4 rounded-lg transition;
+}
+
+.btn-secondary {
+  @apply inline-flex w-full items-center justify-center bg-white hover:bg-gray-50 text-gray-900 font-semibold text-lg px-8 py-4 rounded-lg border border-gray-300 transition;
+}

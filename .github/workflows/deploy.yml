@@ -1,0 +1,66 @@
+name: Build and deploy
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: js_codebase/package-lock.json
+
+      - name: Install
+        working-directory: js_codebase
+        run: npm ci
+
+      - name: Build
+        working-directory: js_codebase
+        run: npm run build
+
+      - name: Upload dist
+        if: github.event_name != 'pull_request'
+        uses: actions/upload-artifact@v4
+        with:
+          name: site-dist
+          path: js_codebase/dist
+          retention-days: 7
+
+  deploy:
+    needs: build
+    if: (github.event_name == 'push' && github.ref == 'refs/heads/main') || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download dist
+        uses: actions/download-artifact@v4
+        with:
+          name: site-dist
+          path: dist
+
+      - name: Deploy to GoDaddy cPanel
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.6
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ftp
+          port: 21
+          local-dir: ./dist/
+          server-dir: ${{ secrets.FTP_SERVER_DIR || '/public_html/' }}
+          timeout: 60000
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/.well-known/**
+            **/cgi-bin/**
