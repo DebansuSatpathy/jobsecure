@@ -22,20 +22,32 @@ Checkout links live in `js_codebase/src/config.js`:
 
 The site is static. The thank-you form cannot store resumes on the server; submit opens WhatsApp with the intake fields so the candidate can attach the file.
 
-## Cashfree return URL (merchant dashboard)
+## Cashfree merchant dashboard (required)
 
-Cashfree hosted Payment Forms do **not** read a return URL from this website. After a successful (or failed) payment, the customer stays on Cashfree unless you set **Redirect URL** on the form.
+The site Buy now button already points at `https://payments.cashfree.com/forms/jobsecure-premium`. Cashfree hosted Payment Forms do **not** read a return URL from this website.
+
+### 1. Publish the premium form
+
+The personalised URL slug must exist. If Cashfree shows “No request found with code jobsecure-premium”, create or publish a Payment Form:
+
+1. Log in to the [Cashfree Merchant Dashboard](https://merchant.cashfree.com/).
+2. **Payment Gateway → Payment Forms → All → Create a Payment Form** (or open the existing premium form).
+3. Amount **₹1999**, payment for **Interview Scheduling**.
+4. Set **Personalised URL** to `jobsecure-premium`.
+5. Save so `https://payments.cashfree.com/forms/jobsecure-premium` loads the live form.
+
+(The existing `jobsecure` and `jobsecure-pro` forms can stay as they are.)
+
+### 2. Redirect URL after pay
 
 Set this so payers land on intake automatically:
 
-1. Log in to the [Cashfree Merchant Dashboard](https://merchant.cashfree.com/).
-2. Open **Payment Gateway → Payment Forms → All**.
-3. Open the form whose personalised URL is `jobsecure-premium` (`https://payments.cashfree.com/forms/jobsecure-premium`).
-4. Edit the form. In form details, set **Redirect URL** to:
+1. Open the `jobsecure-premium` form.
+2. In form details, set **Redirect URL** to:
 
    `https://www.jobsecure.co.in/scheduling/thank-you`
 
-5. Save / update the form.
+3. Save / update the form.
 
 Docs: [Payment Forms overview](https://www.cashfree.com/docs/payments/no-code/payment-forms/overview) (Redirect URL is optional on create/edit).
 
