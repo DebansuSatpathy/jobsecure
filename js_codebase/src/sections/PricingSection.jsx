@@ -1,5 +1,6 @@
 import React from "react";
 import { Check } from "lucide-react";
+import { Link } from "react-router-dom";
 import { SITE } from "../config";
 
 export default function PricingSection() {
@@ -156,8 +157,16 @@ export default function PricingSection() {
               </div>
 
               <a href={plan.link} className="btn-primary mt-6 min-h-[3.5rem] text-center leading-snug">
-                {plan.button}
+                {plan.title === "Interview Scheduling" ? "Buy now — ₹1,999" : plan.button}
               </a>
+              {plan.title === "Interview Scheduling" && (
+                <Link
+                  to="/scheduling"
+                  className="mt-2 block text-sm text-center text-green-800 font-medium underline underline-offset-2"
+                >
+                  What you get on this plan
+                </Link>
+              )}
 
               <p className="text-sm font-semibold mt-6 text-gray-900">What’s included</p>
               <ul className="mt-3 space-y-4 text-gray-700 text-sm flex-1">

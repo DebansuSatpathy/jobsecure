@@ -1,7 +1,7 @@
 import React from "react";
 import { CheckCircle } from "lucide-react";
 import heroMan from "../assets/man-pic-hireright.jpg";
-import { whatsappHref } from "../config";
+import { SITE, SCHEDULING_WHATSAPP_MESSAGE, whatsappHref } from "../config";
 
 export default function Hero() {
   return (
@@ -36,13 +36,24 @@ export default function Hero() {
           </ul>
 
           <div className="flex flex-col sm:flex-row gap-3 pt-2">
-            <a href={whatsappHref()} className="btn-primary sm:w-auto">
-              Send resume on WhatsApp
+            <a href={SITE.cashfree.scheduling} className="btn-primary sm:w-auto">
+              Buy now — ₹1,999
             </a>
-            <a href="#plans" className="btn-secondary sm:w-auto">
-              See plans
+            <a
+              href={whatsappHref(SCHEDULING_WHATSAPP_MESSAGE)}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-secondary sm:w-auto"
+            >
+              WhatsApp us
             </a>
           </div>
+          <p className="text-sm text-gray-500">
+            Interview Scheduling: we book 1–2 real interviews in 90 days.{" "}
+            <a href="#plans" className="text-green-800 font-medium underline underline-offset-2">
+              See plans
+            </a>
+          </p>
         </div>
 
         <div className="relative hidden md:flex justify-center">
