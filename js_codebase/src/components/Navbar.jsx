@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import logo from "../assets/logo.png";
-import { whatsappHref } from "../config";
+import { SITE, SCHEDULING_WHATSAPP_MESSAGE, whatsappHref } from "../config";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
@@ -62,14 +62,17 @@ const Navbar = () => {
             <Link to="/#plans" className={plainNav}>
               Plans
             </Link>
+            <NavLink to="/scheduling" className={navClass}>
+              Scheduling
+            </NavLink>
             <NavLink to="/reviews" className={navClass}>
               Reviews
             </NavLink>
             <Link to="/#faq" className={plainNav}>
               FAQ
             </Link>
-            <a href={whatsappHref()} className="btn-primary !w-auto !py-2.5 !px-5 !text-base">
-              WhatsApp
+            <a href={SITE.cashfree.scheduling} className="btn-primary !w-auto !py-2.5 !px-5 !text-base">
+              Buy now
             </a>
           </div>
 
@@ -103,14 +106,24 @@ const Navbar = () => {
             <Link to="/#plans" onClick={() => setOpen(false)} className={mobileNav}>
               Plans
             </Link>
+            <NavLink to="/scheduling" onClick={() => setOpen(false)} className={mobileNav}>
+              Scheduling
+            </NavLink>
             <NavLink to="/reviews" onClick={() => setOpen(false)} className={mobileNav}>
               Reviews
             </NavLink>
             <Link to="/#faq" onClick={() => setOpen(false)} className={mobileNav}>
               FAQ
             </Link>
-            <a href={whatsappHref()} onClick={() => setOpen(false)} className="btn-primary mt-4">
-              Send resume on WhatsApp
+            <a href={SITE.cashfree.scheduling} onClick={() => setOpen(false)} className="btn-primary mt-4">
+              Buy now — ₹1,999
+            </a>
+            <a
+              href={whatsappHref(SCHEDULING_WHATSAPP_MESSAGE)}
+              onClick={() => setOpen(false)}
+              className="btn-secondary mt-2"
+            >
+              WhatsApp
             </a>
           </motion.div>
         )}

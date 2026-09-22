@@ -25,6 +25,8 @@ import BlogDetails from "./pages/BlogDetails";
 import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
 import Refund from "./pages/Refund";
+import Scheduling from "./pages/Scheduling";
+import SchedulingThankYou from "./pages/SchedulingThankYou";
 
 function Landing() {
   return (
@@ -52,6 +54,8 @@ export default function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<Landing />} />
+          <Route path="/scheduling" element={<Scheduling />} />
+          <Route path="/scheduling/thank-you" element={<SchedulingThankYou />} />
           <Route path="/our-story" element={<OurStory />} />
           <Route path="/blogs" element={<Blogs />} />
           <Route path="/blogs/:id" element={<BlogDetails />} />

@@ -1,5 +1,6 @@
 import React from "react";
 import { Check } from "lucide-react";
+import { Link } from "react-router-dom";
 import { SITE } from "../config";
 
 export default function PricingSection() {
@@ -45,8 +46,7 @@ export default function PricingSection() {
       duration: "/60 days",
       button: "Get interview support — ₹999",
       link: SITE.cashfree.interviewCalls,
-      bestSeller: true,
-      intro: "For when you have a resume and still get no calls.",
+      intro: "Job-search help when you still get no calls.",
       features: [
         {
           label: "Everything in Resume Fix, plus a second format",
@@ -73,16 +73,16 @@ export default function PricingSection() {
           hint: "You apply. We tell you what to send, where, and when to follow up.",
         },
       ],
-      highlighted: true,
+      highlighted: false,
     },
     {
       title: "Interview Scheduling",
       price: "₹1,999",
       duration: "/90 days",
-      button: "We schedule interviews — ₹1,999",
+      button: "Buy now — ₹1,999",
       link: SITE.cashfree.scheduling,
-      mostValued: true,
-      intro: "For when you want someone to push the process.",
+      bestSeller: true,
+      intro: "Hope, plus 1–2 real interviews via our HR network.",
       features: [
         {
           label: "Everything in Interview Call Plan",
@@ -109,7 +109,7 @@ export default function PricingSection() {
           hint: "We keep coordinating dates for three months, not a one-week burst.",
         },
       ],
-      highlighted: false,
+      highlighted: true,
     },
   ];
 
@@ -121,8 +121,9 @@ export default function PricingSection() {
             Plans with a real step-up
           </h2>
           <p className="mt-3 text-lg text-gray-600">
-            ₹499 fixes the document. ₹999 aims the job search. ₹1,999 is us
-            running scheduling with you — including 1–2 booked interviews.
+            ₹1,999 is the plan to buy: we book 1–2 real interviews via our HR
+            network in 90 days. ₹999 and ₹499 are secondary if you only need
+            search help or a resume rewrite.
           </p>
         </div>
 
@@ -138,12 +139,7 @@ export default function PricingSection() {
             >
               {plan.bestSeller && (
                 <div className="absolute -top-3 right-5 bg-green-700 text-white text-xs font-semibold px-3 py-1 rounded-full">
-                  Most people start here
-                </div>
-              )}
-              {plan.mostValued && (
-                <div className="absolute -top-3 left-5 bg-gray-900 text-white text-xs font-semibold px-3 py-1 rounded-full">
-                  Most hands-on
+                  Primary · 1–2 interviews
                 </div>
               )}
 
@@ -155,9 +151,22 @@ export default function PricingSection() {
                 <p className="text-gray-600 text-sm">{plan.duration}</p>
               </div>
 
-              <a href={plan.link} className="btn-primary mt-6 min-h-[3.5rem] text-center leading-snug">
+              <a
+                href={plan.link}
+                className={`mt-6 min-h-[3.5rem] text-center leading-snug ${
+                  plan.highlighted ? "btn-primary" : "btn-secondary"
+                }`}
+              >
                 {plan.button}
               </a>
+              {plan.title === "Interview Scheduling" && (
+                <Link
+                  to="/scheduling"
+                  className="mt-2 block text-sm text-center text-green-800 font-medium underline underline-offset-2"
+                >
+                  What you get on this plan
+                </Link>
+              )}
 
               <p className="text-sm font-semibold mt-6 text-gray-900">What’s included</p>
               <ul className="mt-3 space-y-4 text-gray-700 text-sm flex-1">

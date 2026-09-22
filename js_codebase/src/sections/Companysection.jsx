@@ -25,6 +25,11 @@ export default function CompanySection() {
               </Link>
             </li>
             <li>
+              <Link to="/scheduling" className="footer-link">
+                Interview Scheduling
+              </Link>
+            </li>
+            <li>
               <Link to="/reviews" className="footer-link">
                 Reviews
               </Link>
