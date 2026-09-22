@@ -5,6 +5,8 @@ Deploy: GitHub Actions → GoDaddy cPanel FTP (`.github/workflows/deploy.yml`).
 
 ## First-sale product (interviews, not placements)
 
+Primary sell is **₹1,999 Interview Scheduling** — hope, plus 1–2 real interviews via our HR network. ₹999 and ₹499 are secondary. Primary CTA is **Buy now → Cashfree premium**. WhatsApp is secondary.
+
 | What | URL |
 | --- | --- |
 | Interview Scheduling landing | https://www.jobsecure.co.in/scheduling |
@@ -12,48 +14,31 @@ Deploy: GitHub Actions → GoDaddy cPanel FTP (`.github/workflows/deploy.yml`).
 | Buy now (Cashfree premium) | https://payments.cashfree.com/forms/jobsecure-premium |
 | Homepage | https://www.jobsecure.co.in |
 
-Primary CTA everywhere for this product is **Buy now → Cashfree premium**. WhatsApp is secondary.
-
 Checkout links live in `js_codebase/src/config.js`:
 
-- Resume Fix: `SITE.cashfree.resumeFix` → `/forms/jobsecure`
-- Interview Call Plan: `SITE.cashfree.interviewCalls` → `/forms/jobsecure-pro`
-- Interview Scheduling: `SITE.cashfree.scheduling` → `/forms/jobsecure-premium`
+- Resume Fix / basic: `SITE.cashfree.resumeFix` (alias `SITE.cashfree.basic`) → `/forms/jobsecure-basic` (₹499)
+- Interview Call Plan: `SITE.cashfree.interviewCalls` → `/forms/jobsecure-pro` (₹999)
+- Interview Scheduling: `SITE.cashfree.scheduling` → `/forms/jobsecure-premium` (₹1,999)
 
 The site is static. The thank-you form cannot store resumes on the server; submit opens WhatsApp with the intake fields so the candidate can attach the file.
 
-## Cashfree merchant dashboard (required)
+## Cashfree redirect URL (merchant dashboard)
 
-The site Buy now button already points at `https://payments.cashfree.com/forms/jobsecure-premium`. Cashfree hosted Payment Forms do **not** read a return URL from this website.
+Forms are Active (`jobsecure-basic`, `jobsecure-pro`, `jobsecure-premium`). Cashfree hosted Payment Forms still do **not** read a return URL from this website.
 
-### 1. Publish the premium form
-
-The personalised URL slug must exist. If Cashfree shows “No request found with code jobsecure-premium”, create or publish a Payment Form:
+Set **Redirect URL** on the `jobsecure-premium` form so payers land on intake:
 
 1. Log in to the [Cashfree Merchant Dashboard](https://merchant.cashfree.com/).
-2. **Payment Gateway → Payment Forms → All → Create a Payment Form** (or open the existing premium form).
-3. Amount **₹1999**, payment for **Interview Scheduling**.
-4. Set **Personalised URL** to `jobsecure-premium`.
-5. Save so `https://payments.cashfree.com/forms/jobsecure-premium` loads the live form.
-
-(The existing `jobsecure` and `jobsecure-pro` forms can stay as they are.)
-
-### 2. Redirect URL after pay
-
-Set this so payers land on intake automatically:
-
-1. Open the `jobsecure-premium` form.
-2. In form details, set **Redirect URL** to:
+2. **Payment Gateway → Payment Forms → All** → open `jobsecure-premium`.
+3. Set **Redirect URL** to:
 
    `https://www.jobsecure.co.in/scheduling/thank-you`
 
-3. Save / update the form.
+4. Save.
 
-Docs: [Payment Forms overview](https://www.cashfree.com/docs/payments/no-code/payment-forms/overview) (Redirect URL is optional on create/edit).
+Docs: [Payment Forms overview](https://www.cashfree.com/docs/payments/no-code/payment-forms/overview).
 
-If the dashboard form has no Redirect URL field, the thank-you page is still live at `/scheduling/thank-you` — share that link after payment (or from the scheduling page “Open intake” link).
-
-Optional: Cashfree may append `order_id` (or similar) to the redirect. The intake page displays a payment reference when those query params are present.
+If Redirect URL is not available on that form, `/scheduling/thank-you` is still live — share it after payment (or from the scheduling page “Open intake” link). Optional: Cashfree may append `order_id`; the intake page shows a payment reference when those query params are present.
 
 ## Local build
 

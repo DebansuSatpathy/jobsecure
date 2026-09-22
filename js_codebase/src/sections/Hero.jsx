@@ -9,24 +9,24 @@ export default function Hero() {
       <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-10 items-center">
         <div className="space-y-6">
           <p className="text-sm font-semibold tracking-wide text-green-800 uppercase">
-            Resume rewrite · Job search · Interview scheduling
+            Interview Scheduling · ₹1,999 · 90 days
           </p>
 
           <h1 className="text-4xl lg:text-[3.15rem] font-semibold leading-tight text-gray-900">
-            Get interview calls — not another ignored application.
+            We book 1–2 real interviews via our HR network in 90 days.
           </h1>
 
           <p className="text-lg text-gray-700 max-w-xl">
-            Built for freshers, career-gap candidates, and early professionals
-            who are tired of applying into silence. We fix the resume, then we
-            help you get and schedule real interview calls.
+            Interview Scheduling — not a placement. Built for freshers,
+            career-gap candidates, and early professionals who are tired of
+            applying into silence.
           </p>
 
           <ul className="space-y-3 text-base md:text-lg text-gray-800">
             {[
-              "ATS resume rewrite in 24–48 hours",
-              "A clear job-search plan for your target roles",
-              "Interview prep — and scheduling on the hands-on plan",
+              "1–2 real interview slots through our HR network",
+              "ATS resume rewrite and a focused job-search plan",
+              "Priority WhatsApp while we chase and book the calls",
             ].map((item) => (
               <li key={item} className="flex items-start gap-3">
                 <CheckCircle className="w-6 h-6 text-green-700 shrink-0 mt-0.5" />

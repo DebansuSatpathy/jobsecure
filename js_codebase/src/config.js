@@ -5,7 +5,8 @@ export const SITE = {
   phoneDisplay: "+91 99055 30000",
   whatsapp: "919905530000",
   cashfree: {
-    resumeFix: "https://payments.cashfree.com/forms/jobsecure",
+    resumeFix: "https://payments.cashfree.com/forms/jobsecure-basic",
+    basic: "https://payments.cashfree.com/forms/jobsecure-basic",
     interviewCalls: "https://payments.cashfree.com/forms/jobsecure-pro",
     scheduling: "https://payments.cashfree.com/forms/jobsecure-premium",
   },
